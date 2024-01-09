@@ -8,3 +8,4 @@ class Student(Base):
 
     id = Column(Integer, primary_key=True)
     grade_number = Column(Integer)
+    students = relationship('Student', back_populates='grade')
