@@ -7,3 +7,5 @@ class Student(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
+    grade_id = Column(Integer, ForeignKey('grades.id'))
+    grade = relationship('Grade', back_populates='students')
