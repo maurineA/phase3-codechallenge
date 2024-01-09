@@ -7,3 +7,5 @@ class Subject(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
+    teacher_id = Column(Integer, ForeignKey('teachers.id'))
+    teacher = relationship('Teacher', back_populates='subjects')
