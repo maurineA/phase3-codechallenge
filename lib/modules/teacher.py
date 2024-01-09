@@ -8,3 +8,4 @@ class Teacher(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     subject_taught = Column(String)
+    subjects = relationship('Subject', back_populates='teacher')
