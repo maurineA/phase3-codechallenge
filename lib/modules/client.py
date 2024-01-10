@@ -8,6 +8,6 @@ class Client(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    cars_id = Column(Integer, ForeignKey('cars_id'))
+    cars_id = Column(Integer, ForeignKey('cars.id'))
     
     car = relationship('Car', back_populates='car')
