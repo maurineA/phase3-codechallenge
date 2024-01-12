@@ -15,4 +15,14 @@ class Car(Base):
    
     clients = relationship("Client" , back_populates='cars')
     employees = relationship("Employee", back_populates='cars')
+
+    #add cars into our db
+    @classmethod
+    def add_car(cls, session, type, model, color, price, clients_id, employees_id):
+        new_car = cls(type=type, model=model, color=color, price=price, clients_id=clients_id, employees_id=employees_id)
+        session.add(new_car)
+        session.commit()
+
+
+
    
