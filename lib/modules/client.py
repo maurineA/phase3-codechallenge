@@ -19,3 +19,7 @@ class Client(Base):
         new_client = cls(name=name, contact=contact, cars_id=cars_id)
         session.add(new_client)
         session.commit()
+
+    @classmethod
+    def search_client_by_name(cls, session, name):
+        return session.query(cls).filter_by(name=name).first()
