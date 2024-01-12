@@ -10,3 +10,10 @@ class Employee(Base):
     contact = Column(Integer)
     cars_id = Column(Integer, ForeignKey('cars.id'))
     cars = relationship('Car', back_populates='employees')
+
+    #adding employees into the our db
+    @classmethod
+    def add_employee(cls, session, name, contact, cars_id):
+        new_employee = cls(name=name, contact=contact, cars_id=cars_id)
+        session.add(new_employee)
+        session.command()
