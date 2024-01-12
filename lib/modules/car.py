@@ -23,16 +23,17 @@ class Car(Base):
     employee = relationship("Employee", back_populates='cars')
 
     #add cars into our db
-    @classmethod
-    def add_car(self, session, type, model, color, price, clients_id, employees_id):
+    
+    def add_car(self, type, model, color, price, clients_id, employees_id):
         new_car = Car(type=type, model=model, color=color, price=price, clients_id=clients_id, employees_id=employees_id)
         session.add(new_car)
         session.commit()
 
 
-    @classmethod
-    def search_car_by_model(cls, session, model):
-        return session.query(cls).filter_by(model=model).first()
+    
+    def search_car_by_model(self, model):
+       car = session.query(Car).filter_by(model=model).first()
+       return print(f"found car named {car.type} with model {car.model} and color {car.color} washed at price {car.price}")
 
 
 
