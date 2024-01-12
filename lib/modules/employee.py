@@ -29,7 +29,17 @@ class Employee(Base):
         return print(f"found employee named {employee.name} with contact: {employee.contact}")
     
     
-    
+    #delete employee
+    def delete_employee(self, name):
+        employees = session.query(Employee).filter_by(name=name).first()
+        
+        if employees:
+            session.delete(employees)
+            session.commit()
+            print(f"employee with the name {name} deleted successfully")
+
+        else:
+            print(f"employee with name {name} not found")
 
     
 
