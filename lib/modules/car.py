@@ -24,5 +24,10 @@ class Car(Base):
         session.commit()
 
 
+    @classmethod
+    def search_car_by_model(cls, session, model):
+        return session.query(cls).filter_by(model=model).first()
+
+
 
    

@@ -94,6 +94,7 @@ def search_client():
     else:
         click.echo(f"Client with name '{name}' not found.")
     session.close()
+    
 
 
 
