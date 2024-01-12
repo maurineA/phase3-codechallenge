@@ -128,6 +128,9 @@ cli.add_command(hello)
 cli.add_command(add_client)
 cli.add_command(add_car)
 cli.add_command(add_employee)
+cli.add_command(search_client)
+cli.add_command(search_car)
+cli.add_command(search_employee)
 
 
 
