@@ -19,6 +19,26 @@ def hello():
     click.echo("hello maurine")
 
 
+#add client cli command
+@cli.command()
+def add_client():
+    Session =SessionLocal()
+    name = input("Enter client's name: ")
+    contact = int(input("Enter client's contact: "))
+    cars = Session.query(Car).all()
+    click.echo("Available cars:")
+    for car in cars:
+        click.echo(f"{car.id}: {car.model}")
+    cars_id = int(input("Enter car's ID: "))
+    
+    add_client = Client(name=name, contact=contact, cars_id=cars_id)
+    Session.add(add_client)
+    Session.commit()
+    click.echo("Client added successfully!")
+    Session.close()
+
+
+#add car cli command
 @cli.command()
 def add_car():
     Session = SessionLocal()
@@ -38,11 +58,12 @@ def add_car():
         click.echo(f"{employee.id}: {employee.name}")
     employees_id = int(input("Enter employee's ID: "))
 
-    car = Car(type=type, model=model, color=color, price=price, clients_id=clients_id, employees_id=employees_id)
-    car.add_data(Session)
+    new_car = Car(type=type, model=model, color=color, price=price, clients_id=clients_id, employees_id=employees_id)
+    Session.add_data(new_car)
     Session.commit()
     click.echo("Car added successfully!")
     Session.close()
+
 
 #added add_employee to the cli group
 @cli.command()  
@@ -64,8 +85,10 @@ def add_employee():
     Session.close()
 
 cli.add_command(hello)
+cli.add_command(add_client)
 cli.add_command(add_car)
 cli.add_command(add_employee)
+
 
 if __name__ == '__main__':
     cli()
