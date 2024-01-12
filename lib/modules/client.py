@@ -28,3 +28,16 @@ class Client(Base):
         client = session.query(Client).filter_by(name=name).first()
         return print(f"found client named {client.name} with contact: {client.contact}")
     
+    #delete client
+    def delete_client(self, name):
+        clients = session.query(Client).filter_by(name=name).first()
+        
+        if clients:
+            session.delete(clients)
+            session.commit()
+            print(f"client with the name {name} deleted successfully")
+
+        else:
+            print(f"client with name {name} not found")
+        
+    

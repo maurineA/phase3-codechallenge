@@ -28,3 +28,9 @@ class Employee(Base):
         employee = session.query(Employee).filter_by(name=name).first()
         return print(f"found employee named {employee.name} with contact: {employee.contact}")
     
+    
+    
+
+    
+
+    

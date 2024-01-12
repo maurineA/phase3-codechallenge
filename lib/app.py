@@ -70,7 +70,10 @@ def search_car(model):
     cars.search_car_by_model(model)
 
 
-
+@click.command()
+@click.option('--name', prompt="Enter clients's name to delete", help="Enter clients's name to delete")
+def delete_client(name):
+    clients.delete_client(name)
 
 
 cli.add_command(hello)
@@ -80,6 +83,7 @@ cli.add_command(add_employee)
 cli.add_command(search_client)
 cli.add_command(search_car)
 cli.add_command(search_employee)
+cli.add_command(delete_client)
 
 
 
