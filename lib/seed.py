@@ -1,3 +1,4 @@
+#seed.py
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from modules.car import Car
@@ -12,12 +13,12 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 # Sample data for employees
-employee1 = Employee(name='John Doe', contact=123456789, cars_id=1)
-employee2 = Employee(name='Jane Smith', contact=987654321, cars_id=2)
+employee1 = Employee(name='John Doe', contact=123456789)
+employee2 = Employee(name='Jane Smith', contact=987654321)
 
 # Sample data for clients
-client1 = Client(contact=111223344, name='Client A', cars_id=3)
-client2 = Client(contact=555666777, name='Client B', cars_id=4)
+client1 = Client(contact=111223344, name='Client A')
+client2 = Client(contact=555666777, name='Client B')
 
 # Sample data for cars
 car1 = Car(type='Sedan', model='Toyota Camry', color='Blue', price=25000, clients_id=3, employees_id=1)

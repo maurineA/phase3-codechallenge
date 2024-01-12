@@ -1,6 +1,11 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
+#employee.py
+from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy.orm import relationship, sessionmaker
 from .base import Base
+
+engine = create_engine('sqlite:///car_wash.db')
+Session = sessionmaker(bind=engine)
+session = Session()
 
 class Employee(Base):
     __tablename__ = 'employees'
@@ -8,15 +13,15 @@ class Employee(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     contact = Column(Integer)
-    cars_id = Column(Integer, ForeignKey('cars.id'))
-    cars = relationship('Car', back_populates='employees')
+    
+    cars = relationship('Car', back_populates='employee')
 
     #adding employees into the our db
     @classmethod
-    def add_employee(cls, session, name, contact, cars_id):
-        new_employee = cls(name=name, contact=contact, cars_id=cars_id)
+    def add_employee(cls, session, name, contact):
+        new_employee = cls(name=name, contact=contact)
         session.add(new_employee)
-        session.command()
+        session.commit()
 
     #search employees
     @classmethod
