@@ -84,10 +84,29 @@ def add_employee():
     click.echo("Employee added successfully")
     Session.close()
 
+@cli.command()
+def search_client():
+    session = SessionLocal()
+    name = input("Enter client's name: ")
+    result = session.query(Client).filter_by(name=name).first()
+    if result:
+        click.echo(f"Client found: {result.name}")
+    else:
+        click.echo(f"Client with name '{name}' not found.")
+    session.close()
+
+
+
+
+
+
+
 cli.add_command(hello)
 cli.add_command(add_client)
 cli.add_command(add_car)
 cli.add_command(add_employee)
+
+
 
 
 if __name__ == '__main__':
