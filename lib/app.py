@@ -103,4 +103,4 @@ cli.add_command(delete_car)
 
 if __name__ == '__main__':
     cli()
-    search_client()
+    
