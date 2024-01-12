@@ -17,3 +17,8 @@ class Employee(Base):
         new_employee = cls(name=name, contact=contact, cars_id=cars_id)
         session.add(new_employee)
         session.command()
+
+    #search employees
+    @classmethod
+    def search_employee(cls, session, name):
+        return session.query(cls).filter_by(name=name).first()

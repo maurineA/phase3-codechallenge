@@ -107,6 +107,16 @@ def search_car():
     Session.close()
 
 
+@click.command()
+def search_employee():
+    session = SessionLocal()
+    name = input("Enter employee's name: ")
+    result = session.query(Employee).filter_by(name=name).first()
+    if result:
+        click.echo(f"Employee found: {result.name}")
+    else:
+        click.echo(f"Employee with name '{name}' not found.")
+    session.close()
 
 
 
