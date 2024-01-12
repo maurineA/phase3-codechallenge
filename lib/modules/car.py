@@ -35,6 +35,15 @@ class Car(Base):
        car = session.query(Car).filter_by(model=model).first()
        return print(f"found car named {car.type} with model {car.model} and color {car.color} washed at price {car.price}")
 
+    #delete car
+    def delete_car(self, model):
+        cars = session.query(Car).filter_by(model=model).first()
+        
+        if cars:
+            session.delete(cars)
+            session.commit()
+            print(f"car with the model {model} deleted successfully")
 
+        else:
+            print(f"car with model {model} not found")
 
-   

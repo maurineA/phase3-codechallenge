@@ -80,6 +80,11 @@ def delete_client(name):
 def delete_employee(name):
     employees.delete_employee(name)
 
+@click.command()
+@click.option('--model', prompt="Enter car's model to delete", help="Enter car's model to delete")
+def delete_car(model):
+    cars.delete_car(model)
+
 
 cli.add_command(hello)
 cli.add_command(add_client)
@@ -90,6 +95,7 @@ cli.add_command(search_car)
 cli.add_command(search_employee)
 cli.add_command(delete_client)
 cli.add_command(delete_employee)
+cli.add_command(delete_car)
 
 
 
