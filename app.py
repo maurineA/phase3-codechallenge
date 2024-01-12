@@ -86,15 +86,25 @@ def add_employee():
 
 @cli.command()
 def search_client():
-    session = SessionLocal()
+    Session = SessionLocal()
     name = input("Enter client's name: ")
-    result = session.query(Client).filter_by(name=name).first()
+    result = Session.query(Client).filter_by(name=name).first()
     if result:
         click.echo(f"Client found: {result.name}")
     else:
         click.echo(f"Client with name '{name}' not found.")
-    session.close()
+    Session.close()
     
+@click.command()
+def search_car():
+    Session = SessionLocal()
+    model = input("Enter car model: ")
+    result = Session.query(Car).filter_by(model=model).first()
+    if result:
+        click.echo(f"Car found: {result.model}")
+    else:
+        click.echo(f"Car with model '{model}' not found.")
+    Session.close()
 
 
 
